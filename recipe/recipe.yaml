@@ -22,8 +22,7 @@ build:
     - cd src
     - if: not win
       then: go build -v -o $PREFIX/bin/termdbms
-    - if: win
-      then: go build -v -o %LIBRARY_PREFIX%\bin\termdbms.exe
+      else: go build -v -o %LIBRARY_PREFIX%\bin\termdbms.exe
     - go-licenses save . --save_path=../license-files --ignore modernc.org/mathutil
 
 requirements:
@@ -35,9 +34,7 @@ tests:
   - script:
       - if: not win
         then: which termdbms
-      - if: win
-        then: where termdbms
-
+        else: where termdbms
 about:
   license: MIT
   license_file:
